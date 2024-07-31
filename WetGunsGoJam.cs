@@ -94,6 +94,9 @@ namespace Oxide.Plugins
             if (player == null || projectile == null)
                 return;
 
+            if (PermissionUtil.HasPermission(player, PermissionUtil.IGNORE))
+                return;
+
             if (player.metabolism.wetness.value < _config.WetnessThresholdPercentage / 100f)
                 return;
       
