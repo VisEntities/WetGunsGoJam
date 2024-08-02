@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace Oxide.Plugins
 {
     [Info("Wet Guns Go Jam", "VisEntities", "1.0.0")]
-    [Description(" ")]
+    [Description("Causes guns to jam when players are too wet.")]
     public class WetGunsGoJam : RustPlugin
     {
         #region Fields
@@ -70,7 +70,7 @@ namespace Oxide.Plugins
             return new Configuration
             {
                 Version = Version.ToString(),
-                WetnessThresholdPercentage = 50
+                WetnessThresholdPercentage = 70
             };
         }
 
@@ -99,9 +99,9 @@ namespace Oxide.Plugins
 
             if (player.metabolism.wetness.value < _config.WetnessThresholdPercentage / 100f)
                 return;
-      
-            SendMessage(player, Lang.WetnessThresholdExceeded);
+
             projectile.UnloadAmmo(projectile.GetItem(), player);
+            SendMessage(player, Lang.WetnessThresholdExceeded);
         }
 
         #endregion Oxide Hooks
